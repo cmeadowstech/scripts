@@ -18,9 +18,9 @@ foreach ($file in $files) {
     $path = "$($localfolder)\$($name)"
     $blob = Get-AzStorageBlob -Container $ContainerName -Context $Context -Blob $name -ErrorAction:SilentlyContinue
     if ($blob -eq $null) {
-        Set-AzStorageBlobContent -Container $ContainerName -Context $Context -File $path -Blob $name      # If the file does not currently exist on the container
+        Set-AzStorageBlobContent -Container $ContainerName -Context $Context -File $path -Blob $name -Properties @{"ContentType" = [System.Web.MimeMapping]::GetMimeMapping($path)}    # If the file does not currently exist on the container
     } else {
-        $blob | Set-AzStorageBlobContent -File $path -Force    # If the file does currently exist on the container
+        $blob | Set-AzStorageBlobContent -File $path -Properties @{"ContentType" = [System.Web.MimeMapping]::GetMimeMapping($path)} -Force    # If the file does currently exist on the container
     }
 }
 
