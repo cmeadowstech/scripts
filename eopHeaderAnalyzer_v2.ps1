@@ -1,4 +1,4 @@
-﻿<#
+<#
 
 Just run the script and paste the value of x-forefront-antispam-report when prompted. This does not interpret
 country or language, only any pairs like CAT:AMP that were found in the following documentation:
@@ -31,7 +31,7 @@ $eopHeaders = @{
     "IPV:CAL" = "[IPV:CAL] The message skipped spam filtering because the source IP address was in the IP Allow List."
     "IPV:NLI" = "[IPV:NLI] The IP address was not found on any IP reputation list."
     "SFV:BLK" = "[SFV:BLK] Filtering was skipped and the message was blocked because it was sent from an address in a user's Blocked Senders list."
-    "SFV:NSPM" = "Spam filtering marked the message as non-spam and the message was sent to the intended recipients."
+    "SFV:NSPM" = "[SFV:NSPM] Spam filtering marked the message as non-spam and the message was sent to the intended recipients."
     "SFV:SFE" = "[SFV:SFE] Filtering was skipped and the message was allowed because it was sent from an address in a user's Safe Senders list."
     "SFV:SKA" = "[SFV:SKA] The message skipped spam filtering and was delivered to the Inbox because the sender was in the allowed senders list or allowed domains list in an anti-spam policy."
     "SFV:SKB" = "[SFV:SKB] The message was marked as spam because it matched a sender in the blocked senders list or blocked domains list in an anti-spam policy."
