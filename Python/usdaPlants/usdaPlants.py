@@ -55,6 +55,8 @@ plantListData = list(plantListReader)
 for i in range(len(plantListData)):
     symbol = plantListData[i][0]
 
+    # Checking if item already exists or not
+
     try:
         container.read_item(symbol, symbol)
         recordExists = True
@@ -63,6 +65,9 @@ for i in range(len(plantListData)):
 
     if recordExists:
         print(f'{symbol} item already exists.')
+
+    # Creates the item if it does not exist
+
     else:
         print(f'Creating item for {symbol}.')
         
@@ -75,5 +80,3 @@ for i in range(len(plantListData)):
         plantData['id'] = plantData['Symbol']
 
         container.upsert_item(plantData)
-
-    # pprint.pprint(jsonPlantData)
