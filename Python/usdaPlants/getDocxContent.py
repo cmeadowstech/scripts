@@ -1,6 +1,3 @@
-# From here: https://dadoverflow.com/2022/01/30/parsing-word-documents-with-python/
-
-from re import U
 import requests, docx, io
 
 def getDocxContent(u):
