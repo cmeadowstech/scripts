@@ -1,2 +1,3 @@
 python/usdaPlants/testIgnore.py
-python/usdaPlants/config.py
+python/usdaPlants/API/config.py
+python/usdaPlants/Scraper/config.py
