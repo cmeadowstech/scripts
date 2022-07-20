@@ -1,0 +1,1 @@
+Currently deprecated. Please see my most recent API rendetion here - https://github.com/cmeadowstech/usdaPlantsFastApi
