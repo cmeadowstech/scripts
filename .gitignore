@@ -1,5 +1,6 @@
-python/Plants/API/config.py
-python/Plants/Scraper/config.py
+config.py
+settings.py
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
