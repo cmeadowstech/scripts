@@ -34,13 +34,23 @@ variable "prefix" {
     default = "tf"  
 }
 
+variable "db_username" {
+  type = string
+  sensitive = true
+}
+
+variable "db_password" {
+  type = string
+  sensitive = true
+}
+
 resource "azurerm_mssql_server" "sqlserver" {
   name = "${var.prefix}-sql-server-4308"
   location = data.terraform_remote_state.global.outputs.location
   resource_group_name = data.terraform_remote_state.global.outputs.rgName
   version = "12.0"
-  administrator_login = "4dm1n157r470r"
-  administrator_login_password = "#1W7!Bm1GeXg"
+  administrator_login = var.db_username
+  administrator_login_password = var.db_password
 }
 
 resource "azurerm_mssql_database" "sqldb" {
@@ -49,4 +59,8 @@ resource "azurerm_mssql_database" "sqldb" {
   sku_name = "Basic"
   license_type = "LicenseIncluded"
   zone_redundant = false
+}
+
+output "sqlAddess" {
+  value = azurerm_mssql_server.sqlserver.fully_qualified_domain_name
 }

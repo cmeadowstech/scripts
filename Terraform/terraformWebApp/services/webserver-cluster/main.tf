@@ -21,6 +21,16 @@ variable "port" {
   default = 8090
 }
 
+variable "db_username" {
+  type = string
+  sensitive = true
+}
+
+variable "db_password" {
+  type = string
+  sensitive = true
+}
+
 terraform {
   backend "azurerm" {
     resource_group_name  = "tf-rg"
@@ -37,6 +47,16 @@ data "terraform_remote_state" "global" {
     storage_account_name = "tfstorage665189"
     container_name       = "tf-state"
     key                  = "global-workspace/terraform.tfstate"
+  }
+}
+
+data "terraform_remote_state" "db" {
+  backend = "azurerm" 
+  config = {
+    resource_group_name  = "tf-rg"
+    storage_account_name = "tfstorage665189"
+    container_name       = "tf-state"
+    key                  = "db-workspace/terraform.tfstate"
   }
 }
 
@@ -159,13 +179,12 @@ resource "azurerm_virtual_machine_scale_set" "scaleSet" {
 
     os_profile {
       computer_name_prefix = "${var.prefix}-ss-instance"
-      admin_username = "cmeadows"
-      admin_password = "#1W7!Bm1GeXg"
-      custom_data = base64encode(<<-EOF
-          #!/bin/bash
-          echo "Hello, World" > index.html
-          nohup busybox httpd -f -p ${var.port} &
-          EOF
+      admin_username = var.db_username
+      admin_password = var.db_password
+      custom_data = templatefile ("user-data.sh", {
+        server_address = data.terraform_remote_state.db.outputs.sqlAddess
+        server_port = var.port
+        }
       )
     }
         
