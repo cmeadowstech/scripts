@@ -72,11 +72,7 @@ resource logicApp 'Microsoft.Web/sites@2022-03-01' = {
         }
         {
           'name': 'FUNCTIONS_EXTENSION_VERSION'
-          'value': '~3'
-        }
-        {
-          'name': 'FUNCTIONS_V2_COMPATIBILITY_MODE'
-          'value': 'true'
+          'value': '~4'
         }
         {
           'name': 'FUNCTIONS_WORKER_RUNTIME'
@@ -92,7 +88,7 @@ resource logicApp 'Microsoft.Web/sites@2022-03-01' = {
         }
         {
           'name': 'WEBSITE_NODE_DEFAULT_VERSION'
-          'value': '~12'
+          'value': '~14'
         } 
       ]      
     }
